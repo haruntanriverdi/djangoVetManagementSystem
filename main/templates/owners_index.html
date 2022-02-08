@@ -81,7 +81,7 @@
                                     <tbody>
                                         {% for owner in owners %}
                                         <tr>
-                                            <td>{{ owner.name }}</td>
+                                            <td><a href="{% url 'owner-detail' owner.id %}">{{ owner.name }}</a> </td>
                                             <td>{{ owner.email }}</td>
                                             <td>{{ owner.phone }}</td>
                                             <td>{{ owner.address }}</td>

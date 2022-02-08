@@ -25,15 +25,15 @@ def login_view(request):
             if user is not None:
 
                 login(request, user)
-                messages.add_message(request, messages.SUCCESS, f'Hoşgeldiniz {user.username}')
+                messages.add_message(request, messages.SUCCESS, f'Welcome {user.username}')
                 return redirect("/")
 
             else:
-                messages.add_message(request, messages.ERROR, 'Girilen bilgiler geçersiz...')
+                messages.add_message(request, messages.ERROR, 'Invalid input...')
                 return render(request, 'login.html', {"form": form}, status=401)
 
         else:
-            messages.add_message(request, messages.ERROR, 'Form geçersiz...')
+            messages.add_message(request, messages.ERROR, 'Invalid form...')
 
     return render(request, "login.html", {"form": form,})
 
@@ -41,7 +41,7 @@ def login_view(request):
 def logout_user(request):
     logout(request)
     messages.add_message(request, messages.SUCCESS,
-                         'Başarıyla çıkış yapıldı')
+                         'Logout succesfully')
 
     return redirect(reverse('login'))
 
