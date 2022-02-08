@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Pets - Vet System</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="sb-nav-fixed">
+    {% include 'includes/header.html' %}
+
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                {% include 'includes/sidebar.html' %}
+
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Search Result</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Search</li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                {% if searched %}
+                                    <h5>Found Pets:</h5>
+                                    {% if pets %}
+                                        {% for pet in pets %}
+                                        <a href="{% url 'pet-detail' pet.id %}"><li>{{ pet.name }}</li></a>
+                                    {% endfor %}
+                                    {% else %}
+                                        <p>Nothing found</p>
+                                    {% endif %}
+
+
+
+                                    <h5>Found Owners:</h5>
+                                    {% if owners %}
+                                        {% for owner in owners %}
+                                            <a href="{% url 'owner-detail' owner.id %}"><li>{{ owner.name }}</li></a>
+                                        {% endfor %}
+                                    {% else %}
+                                         <p>Nothing found</p>
+                                    {% endif %}
+                                {% else %}
+                                    <h5>You need to input a value...</h5>
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+                {% include 'includes/footer.html' %}
+
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
+    </body>
+</html>
