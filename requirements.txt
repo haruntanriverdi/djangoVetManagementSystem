@@ -1,2 +1,5 @@
-Django~=4.0.2
-setuptools~=60.5.0
+asgiref
+Django
+djangoVetManagement
+python-decouple
+sqlparse
